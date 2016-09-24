@@ -16,7 +16,7 @@
     </span>
     <span class="tags">
       <% note.tags.each_with_index do |t, i| %>
-        <span class="tag"><%= t %></span>
+        <span class="tag" style="background-color: #<%= color_for_string(t.to_s) %>"><%= t %></span>
       <% end%>
     </span>
   </div>
