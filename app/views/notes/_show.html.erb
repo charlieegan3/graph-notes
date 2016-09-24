@@ -1,12 +1,24 @@
 <div class="note">
   <%= note.has_link? ? link_to(note.title, note.link) : note.title %> |
   <%= link_to 'View', edit_note_path(note) %> |
-  <%= link_to 'Add Child', new_note_path(parent_id: note.id) %>
+  <% unless note.has_link? %>
+    <%= link_to 'Add Child', new_note_path(parent_id: note.id) %> |
+    <%= form_for(Note.new(parent: note), html: { class: "inline" }) do |f| %>
+      <%= f.text_field :link, placeholder: "Child Link", class: "inline" %>
+      <%= f.hidden_field :parent_id, value: note.id %>
+    <% end %> |
+  <% end %>
+  <%= link_to 'Delete', note, method: :delete, data: { confirm: 'Are you sure?' } %> |
 
-  <div class="tags">
-    <% note.tags.each_with_index do |t, i| %>
-      <span class="tag"><%= t %></span>
-    <% end%>
+  <div>
+    <span class="age">
+      <%= distance_of_time_in_words(note.created_at, Time.now) %>
+    </span>
+    <span class="tags">
+      <% note.tags.each_with_index do |t, i| %>
+        <span class="tag"><%= t %></span>
+      <% end%>
+    </span>
   </div>
 
   <% note.children.each do |note| %>

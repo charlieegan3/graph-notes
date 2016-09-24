@@ -5,8 +5,12 @@
 .note {
   padding: 2px;
   margin-left: 2px;
-  background-color: #eee;
+  background-color: rgba(0,0,0,0.07);
   border: 1px solid #aaa;
+
+  .age {
+    font-size: 0.8em;
+  }
 
   .tags {
     font-size: 0.8em;

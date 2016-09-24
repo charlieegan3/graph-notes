@@ -2,4 +2,16 @@
 
 <%= render 'form', note: @note %>
 
+<br/>
+
 <%= button_to 'Delete', @note, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<br/>
+
+<%= link_to 'Add Child', new_note_path(parent_id: @note.id) %>
+
+<br/><br/>
+
+<% @note.children.each do |note| %>
+  <%= render "show", note: note %>
+<% end %>

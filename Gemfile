@@ -12,6 +12,8 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 
 gem 'acts-as-taggable-on'
+gem 'metainspector'
+gem 'stopwords'
 
 group :development, :test do
   gem 'byebug', platform: :mri

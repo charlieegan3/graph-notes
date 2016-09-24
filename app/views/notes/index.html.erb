@@ -1,8 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<div>
-  <%= link_to 'New Root', new_note_path %>
-</div>
+<%= link_to 'New Root', new_note_path %>
+<br/>
 
 <% @notes.each do |note| %>
   <%= render "show", note: note %>

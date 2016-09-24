@@ -1,9 +1,28 @@
 class Note < ApplicationRecord
   belongs_to :parent, class_name: "Note", required: false
-  has_many :children, class_name: "Note", foreign_key: "parent_id"
+  has_many :children, class_name: "Note", foreign_key: "parent_id", dependent: :destroy
   acts_as_taggable
+
+  before_save :populate
+
+  def self.roots
+    where(parent: nil)
+  end
 
   def has_link?
     link.present?
+  end
+
+  def populate
+    if title.blank? && link.present?
+      page = MetaInspector.new(link)
+      self.title = page.best_title
+      self.comment = page.description if self.comment.blank?
+      if self.tags.empty?
+        meta_tags = page.meta_tag.dig("name", "keywords").to_s
+        title_tags = (self.title.scan(/\w\S*\w/).map(&:downcase) - Stopwords::STOP_WORDS).join(",")
+        self.tag_list = [meta_tags, title_tags].join(",")
+      end
+    end
   end
 end
