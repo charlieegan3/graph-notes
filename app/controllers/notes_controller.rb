@@ -3,11 +3,12 @@ class NotesController < ApplicationController
 
   # GET /notes
   def index
-    @notes = Note.all
+    @notes = Note.all.order(created_at: :asc)
   end
 
   # GET /notes/1
   def show
+    redirect_to notes_path
   end
 
   # GET /notes/new

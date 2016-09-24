@@ -12,28 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, placeholder: :title %>
   </div>
 
   <div class="field">
-    <%= f.label :link %>
-    <%= f.text_field :link %>
+    <%= f.text_field :link, placeholder: :link %>
   </div>
 
   <div class="field">
-    <%= f.label :comment %>
-    <%= f.text_area :comment %>
+    <%= f.text_area :comment, placeholder: :comment %>
   </div>
 
   <div class="field">
-    <%= f.label :parent_id %>
-    <%= f.text_field :parent_id %>
+    <%= f.text_field :parent_id, value: note.parent ? note.parent.id : params["parent_id"], placeholder: :parent %>
   </div>
 
   <div class="field">
-    <%= f.label :tag_list %><br />
-    <%= f.text_field :tag_list, value: note.tags.reverse.join(", ") %>
+    <%= f.text_field :tag_list, value: note.tags.reverse.join(", "), placeholder: :tags %>
   </div>
 
   <div class="actions">

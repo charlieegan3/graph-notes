@@ -1,0 +1,15 @@
+<div class="note">
+  <%= note.has_link? ? link_to(note.title, note.link) : note.title %> |
+  <%= link_to 'View', edit_note_path(note) %> |
+  <%= link_to 'Add Child', new_note_path(parent_id: note.id) %>
+
+  <div class="tags">
+    <% note.tags.each_with_index do |t, i| %>
+      <span class="tag"><%= t %></span>
+    <% end%>
+  </div>
+
+  <% note.children.each do |note| %>
+    <%= render 'show', note: note %>
+  <% end %>
+</div>
