@@ -1,0 +1,23 @@
+app:
+  container_name: web_app
+  build: .
+  volumes:
+    - .:/app
+  ports:
+    - "3000:3000"
+  links:
+    - db:postgres
+  environment:
+    POSTGRES_USER: "${POSTGRES_USER}"
+    POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+
+db:
+  container_name: database
+  image: postgres:9.4.5
+  ports:
+    - "5432:5432"
+  volumes:
+    - graph_notes_data:/var/lib/postgresql/data
+  environment:
+    POSTGRES_USER: "${POSTGRES_USER}"
+    POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
