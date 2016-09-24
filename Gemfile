@@ -11,6 +11,8 @@ gem 'pg'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 
+gem 'acts-as-taggable-on'
+
 group :development, :test do
   gem 'byebug', platform: :mri
 end
