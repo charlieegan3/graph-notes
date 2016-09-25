@@ -1,4 +1,4 @@
-<div class="note" id="note-<%= note.id %>">
+<div class="note<%= root ? " root" : "" %>" id="note-<%= note.id %>">
   <%= note.has_link? ? link_to(note.title, note.link) : note.title %> |
   <%= link_to 'View', edit_note_path(note) %> |
   <% unless note.has_link? %>
@@ -22,6 +22,6 @@
   </div>
 
   <% note.children.each do |note| %>
-    <%= render 'show', note: note %>
+    <%= render 'show', note: note, root: false %>
   <% end %>
 </div>
