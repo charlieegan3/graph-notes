@@ -20,9 +20,13 @@ class Note < ApplicationRecord
       self.comment = page.description if self.comment.blank?
       if self.tags.empty?
         meta_tags = page.meta_tag.dig("name", "keywords").to_s.split(",").map(&:strip).reject { |t| t.scan(/[0-9]/).size > 2 }
-        title_tags = (self.title.scan(/[a-z]\S*[a-z]/i).map(&:downcase) - Stopwords::STOP_WORDS).join(",")
+        title_tags = (self.title.scan(/[a-z]\S*[a-z]/i).map(&:downcase) - stop_words).join(",")
         self.tag_list = [meta_tags, title_tags].join(",")
       end
     end
+  end
+
+  def stop_words
+    Stopwords::STOP_WORDS + %w(what's best ask way combines easily)
   end
 end
