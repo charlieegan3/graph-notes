@@ -19,8 +19,8 @@ class Note < ApplicationRecord
       self.title = page.best_title
       self.comment = page.description if self.comment.blank?
       if self.tags.empty?
-        meta_tags = page.meta_tag.dig("name", "keywords").to_s
-        title_tags = (self.title.scan(/\w\S*\w/).map(&:downcase) - Stopwords::STOP_WORDS).join(",")
+        meta_tags = page.meta_tag.dig("name", "keywords").to_s.split(",").map(&:strip).reject { |t| t.scan(/[0-9]/).size > 2 }
+        title_tags = (self.title.scan(/[a-z]\S*[a-z]/i).map(&:downcase) - Stopwords::STOP_WORDS).join(",")
         self.tag_list = [meta_tags, title_tags].join(",")
       end
     end
