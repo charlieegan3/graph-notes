@@ -1,5 +1,11 @@
 <div class="note<%= root ? " root" : "" %>" id="note-<%= note.id %>">
-  <%= note.has_link? ? link_to(note.title, note.link) : note.title %> |
+  <% if note.has_link? %>
+      <%= link_to(note.short_title(10), note.link) %>
+  <% else %>
+    <strong class="title">
+      <%= note.title %>
+    </strong>
+  <% end %>
   <%= link_to 'View', edit_note_path(note) %> |
   <% unless note.has_link? %>
     <%= link_to 'Add Child', new_note_path(parent_id: note.id) %> |
@@ -12,14 +18,11 @@
   <span class="age">
     <%= compact_age(note.created_at) %>
   </span>
-
-  <div>
-    <span class="tags">
-      <% note.tags.each_with_index do |t, i| %>
-        <span class="tag" style="background-color: #<%= color_for_string(t.to_s) %>"><%= t %></span>
-      <% end%>
-    </span>
-  </div>
+  <span class="tags">
+    <% note.tags.take(8).each_with_index do |t, i| %>
+      <span class="tag" style="background-color: #<%= color_for_string(t.to_s) %>"><%= t %></span>
+    <% end%>
+  </span>
 
   <% note.children.each do |note| %>
     <%= render 'show', note: note, root: false %>
