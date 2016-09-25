@@ -11,6 +11,7 @@ module NotesHelper
       .gsub(/hours?/, "h")
       .gsub(/days?/, "d")
       .gsub("less than a", "1")
+      .gsub("about", "")
       .gsub(/\s+/, "")
   end
 end
