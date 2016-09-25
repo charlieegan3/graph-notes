@@ -37,6 +37,16 @@
 
 }
 
+.action {
+  text-decoration: none;
+  border: 1px solid black;
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+  border-radius: 3px;
+  padding: 0px 2px;
+  background-color: #eee;
+}
+
 body > .note {
   margin-left: 0px;
 }
