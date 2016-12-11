@@ -1,0 +1,17 @@
+# Incomplete...
+# test:
+  # box: ruby:2.3.1
+  # services:
+   # - id: vyper/gcd-grpc
+  # steps:
+  # - bundle-install
+  # - script:
+    # code: bundle exec rails test
+
+deploy:
+  box: google/cloud-sdk
+  steps:
+  - bigtruedata/gcloud-auth-service-account:
+    key: $GCP_SERVICE_ACCOUNT_JSON
+  - bigtruedata/gcloud-app-deploy:
+    filename: app.yaml

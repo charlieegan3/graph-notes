@@ -23,3 +23,5 @@
 local_env.sh
 
 bundle.tar.gz
+
+.wercker/
