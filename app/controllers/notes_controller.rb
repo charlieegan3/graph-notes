@@ -3,7 +3,7 @@ class NotesController < ApplicationController
 
   # GET /notes
   def index
-    @notes = Note.roots.order(created_at: :asc)
+    @notes = Note.query(parent_id: nil)
   end
 
   # GET /notes/1
@@ -24,8 +24,10 @@ class NotesController < ApplicationController
   def create
     @note = Note.new(note_params)
 
+    @note.created_at = Time.zone.now
+
     if @note.save
-      redirect_to @note, notice: 'Note was successfully created.'
+      redirect_to notes_path + "#note-#{@note.id}", notice: 'Note was successfully created.'
     else
       render :new
     end
@@ -54,6 +56,6 @@ class NotesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def note_params
-      params.require(:note).permit(:title, :link, :comment, :parent_id, :tag_list)
+      params.require(:note).permit(:title, :link, :comment, :parent_id)
     end
 end

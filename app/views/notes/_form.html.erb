@@ -27,10 +27,6 @@
     <%= f.text_field :parent_id, value: note.parent ? note.parent.id : params["parent_id"], placeholder: :parent %>
   </div>
 
-  <div class="field">
-    <%= f.text_field :tag_list, value: note.tags.reverse.join(", "), placeholder: :tags %>
-  </div>
-
   <div class="actions">
     <%= f.submit %>
   </div>

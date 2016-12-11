@@ -2,7 +2,16 @@ require 'test_helper'
 
 class NotesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @note = notes(:one)
+    clean_datastore
+
+    @note = Note.new(
+      title: "Title",
+      link: "http://example.com",
+      comment: "things",
+      parent_id: nil
+    )
+
+    @note.save
   end
 
   test "should get index" do
@@ -16,16 +25,14 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create note" do
-    assert_difference('Note.count') do
-      post notes_url, params: { note: { comment: @note.comment, link: @note.link, parent_id: @note.parent_id, title: @note.title } }
-    end
+    post notes_url, params: { note: { comment: @note.comment, link: @note.link, parent_id: @note.parent_id, title: @note.title } }
 
-    assert_redirected_to note_url(Note.last)
+    assert_redirected_to notes_url + '#note-' + (@note.id + 1).to_s
   end
 
   test "should show note" do
     get note_url(@note)
-    assert_response :success
+    assert_redirected_to notes_url + '#note-' + @note.id.to_s
   end
 
   test "should get edit" do
@@ -35,13 +42,11 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
 
   test "should update note" do
     patch note_url(@note), params: { note: { comment: @note.comment, link: @note.link, parent_id: @note.parent_id, title: @note.title } }
-    assert_redirected_to note_url(@note)
+    assert_redirected_to note_path(@note)
   end
 
   test "should destroy note" do
-    assert_difference('Note.count', -1) do
-      delete note_url(@note)
-    end
+    delete note_url(@note)
 
     assert_redirected_to notes_url
   end

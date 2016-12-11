@@ -8,12 +8,11 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer'
 
-gem 'pg'
+gem 'google-cloud'
 
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 
-gem 'acts-as-taggable-on'
 gem 'metainspector'
 gem 'stopwords'
 
