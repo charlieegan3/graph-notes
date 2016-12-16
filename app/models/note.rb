@@ -18,6 +18,8 @@ class Note < ApplicationRecord
   end
 
   def populate
+    return promote_link_to_title if should_promote_link_to_title?
+
     if title.blank? && link.present?
       page = MetaInspector.new(link)
       self.title = page.best_title
@@ -28,6 +30,15 @@ class Note < ApplicationRecord
         self.tag_list = [meta_tags, title_tags].join(",")
       end
     end
+  end
+
+  def should_promote_link_to_title?
+    title.blank? && !link.start_with?("http")
+  end
+
+  def promote_link_to_title
+    self.title = self.link
+    self.link = nil
   end
 
   def stop_words
