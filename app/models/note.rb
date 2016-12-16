@@ -47,11 +47,18 @@ class Note < ApplicationRecord
 
   def set_tags(page)
     meta_tags = page.meta_tag.dig("name", "keywords").to_s.split(",").map(&:strip).reject { |t| t.scan(/[0-9]/).size > 2 }
-    title_tags = (self.title.scan(/[a-z]\S*[a-z]/i).map(&:downcase) - stop_words).join(",")
-    self.tag_list = [meta_tags, title_tags].join(",")
+    title_tags = self.title.scan(/[a-z]\S*[a-z]/i).map(&:downcase)
+    self.tag_list = Note.filter_tags([*meta_tags, *title_tags]).join(",")
   end
 
-  def stop_words
-    Stopwords::STOP_WORDS + %w(what's best ask way combines easily)
+  def self.filter_tags(tags)
+    tags.reject { |t|
+      t.include? "/" ||
+      Note.stop_words.include?(t)
+    }
+  end
+
+  def self.stop_words
+    Stopwords::STOP_WORDS + %w(what's best ask way combines easily hacker news using)
   end
 end
