@@ -29,7 +29,11 @@
     <% end%>
   </span>
 
-  <% note.children.each do |note| %>
-    <%= render 'show', note: note, root: false %>
+  <% unless note.children.empty? %>
+    <div class="children">
+      <% note.children.each do |note| %>
+        <%= render 'show', note: note, root: false %>
+      <% end %>
+    </div>
   <% end %>
 </div>

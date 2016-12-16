@@ -26,13 +26,25 @@
       color: white;
     }
   }
+
+  .children {
+    margin-top: 3px;
+  }
+
+  &.root {
+    width: 100%;
+    max-width: 400px;
+
+    vertical-align: top;
+    display: inline-block;
+  }
 }
 
 .note:not(:last-child) {
   margin-bottom: 5px;
 
   &.root {
-    border-bottom: 2px solid black;
+    margin-bottom: 10px;
   }
 
 }
