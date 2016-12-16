@@ -14,3 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function(){
+  $($('a[href*="#"]').attr("href")).effect("highlight", {}, 1500);
+});

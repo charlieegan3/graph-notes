@@ -44,3 +44,7 @@ input.inline {
   font-size: 1em;
   padding: 1px 2px;
 }
+
+:target {
+  background: LightGreen;
+}
