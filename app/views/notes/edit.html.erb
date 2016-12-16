@@ -13,5 +13,5 @@
 <br/><br/>
 
 <% @note.children.each do |note| %>
-  <%= render "show", note: note %>
+  <%= render "show", note: note, root: @note.root? %>
 <% end %>

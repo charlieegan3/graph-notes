@@ -9,6 +9,10 @@ class Note < ApplicationRecord
     where(parent: nil)
   end
 
+  def root?
+    parent.present?
+  end
+
   def short_title(count)
     (shortened = title.split(" ").take(count).join(" ")).length < title.length ? "#{shortened}..." : title
   end
