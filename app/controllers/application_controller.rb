@@ -1,5 +1,13 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  http_basic_authenticate_with name: ENV.fetch('USERNAME'), password: ENV.fetch('PASSWORD')
+  before_action :verify
+
+  def verify
+    cookies.permanent.signed[:password] = params[:password] if params[:password]
+
+    if cookies.permanent.signed[:password] != ENV['PASSWORD']
+      return render plain: 'Enter Password', status: 401
+    end
+  end
 end
