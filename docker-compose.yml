@@ -1,8 +1,7 @@
 app:
-  container_name: graph_notes_app
   build: .
   volumes:
-    - .:/app
+    - .:/app:Z
   ports:
     - "3000:3000"
   links:
@@ -14,12 +13,11 @@ app:
     PASSWORD: password
 
 db:
-  container_name: database
   image: postgres:9.4.5
   ports:
     - "5432:5432"
   volumes:
-    - graph_notes_data:/var/lib/postgresql/data
+    - graph_notes_data:/var/lib/postgresql/data:Z
   environment:
     POSTGRES_USER: app
     POSTGRES_PASSWORD: password
