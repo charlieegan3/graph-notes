@@ -2,6 +2,58 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.root-container {
+  margin: 1em 0;
+  font-size: .85em;
+}
+
+.root {
+  display: inline-block;
+  padding: 1em;
+  width: 100%;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+@media only screen and (min-width: 500px) {
+  .root-container {
+	-moz-column-count: 2;
+	-webkit-column-count: 2;
+	column-count: 2;
+  }
+}
+
+@media only screen and (min-width: 700px) {
+  .root-container {
+	-moz-column-count: 3;
+	-webkit-column-count: 3;
+	column-count: 3;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .root-container {
+	-moz-column-count: 4;
+	-webkit-column-count: 4;
+	column-count: 4;
+  }
+}
+
+@media only screen and (min-width: 1100px) {
+  .root-container {
+	-moz-column-count: 5;
+	-webkit-column-count: 5;
+	column-count: 5;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .wrapper {
+	  width: 1260px;
+  }
+}
+
 .note {
   padding: 2px;
   margin-left: 2px;
@@ -30,14 +82,6 @@
   .children {
     margin-top: 3px;
   }
-
-  &.root {
-    width: 100%;
-    max-width: 400px;
-
-    vertical-align: top;
-    display: inline-block;
-  }
 }
 
 .note:not(:last-child) {
@@ -46,7 +90,6 @@
   &.root {
     margin-bottom: 10px;
   }
-
 }
 
 .action {

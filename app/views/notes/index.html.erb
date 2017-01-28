@@ -3,6 +3,8 @@
 <%= link_to 'New Root', new_note_path %>
 <br/>
 
-<% @notes.each do |note| %>
-  <%= render "show", note: note, root: true %>
-<% end %>
+<div class="root-container">
+  <% @notes.each do |note| %>
+    <%= render "show", note: note, root: true %>
+  <% end %>
+</div>
