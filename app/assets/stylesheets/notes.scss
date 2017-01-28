@@ -57,8 +57,12 @@
 .note {
   padding: 2px;
   margin-left: 2px;
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0,0,0,0.06);
   border: 1px solid #aaa;
+
+  &.root {
+    border: 1px solid black;
+  }
 
   .title a {
     text-decoration: none;
