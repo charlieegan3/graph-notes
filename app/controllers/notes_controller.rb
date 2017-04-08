@@ -10,9 +10,9 @@ class NotesController < ApplicationController
     terms = params[:query].downcase.split(/\W+/)
     @notes = [
       Note.tagged_with(terms, any: true),
-      Note.where("title like ?", "%#{params[:query]}%"),
-      Note.where("comment like ?", "%#{params[:query]}%"),
-      Note.where("link like ?", "%#{params[:query]}%")
+      Note.where("title ilike ?", "%#{params[:query]}%"),
+      Note.where("comment ilike ?", "%#{params[:query]}%"),
+      Note.where("link ilike ?", "%#{params[:query]}%")
     ].flatten.uniq
   end
 
