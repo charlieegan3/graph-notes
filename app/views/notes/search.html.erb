@@ -1,11 +1,9 @@
-<p id="notice"><%= notice %></p>
+<%= link_to "Home", root_path %>
+<br/>
 
 <%= form_tag search_path, method: :get do %>
   <%= text_field_tag :query %>
 <% end %>
-
-<%= link_to 'New Root', new_note_path %>
-<br/>
 
 <div class="root-container">
   <% @notes.each do |note| %>

@@ -6,6 +6,16 @@ class NotesController < ApplicationController
     @notes = Note.roots.order(created_at: :asc)
   end
 
+  def search
+    terms = params[:query].downcase.split(/\W+/)
+    @notes = [
+      Note.tagged_with(terms, any: true),
+      Note.where("title like ?", "%#{params[:query]}%"),
+      Note.where("comment like ?", "%#{params[:query]}%"),
+      Note.where("link like ?", "%#{params[:query]}%")
+    ].flatten.uniq
+  end
+
   # GET /notes/1
   def show
     redirect_to notes_path + "#note-#{@note.id}"

@@ -35,7 +35,7 @@
         <%= render "show", note: note, root: false %>
       <% end %>
       <% if note.children.size > 3 %>
-        <%= link_to "View All", edit_note_path(note), class: :action %>
+        <%= link_to "#{note.children.size - 3} more", edit_note_path(note), class: :action %>
       <% end %>
     </div>
   <% end %>
