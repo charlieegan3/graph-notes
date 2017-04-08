@@ -7,17 +7,17 @@
     </strong>
   <% end %>
 
-  <%= link_to 'View', edit_note_path(note), class: :action %> |
+  <%= link_to "View", edit_note_path(note), class: :action %> |
 
   <% unless note.has_link? %>
-    <%= link_to 'Add Child', new_note_path(parent_id: note.id), class: :action %> |
+    <%= link_to "Add Child", new_note_path(parent_id: note.id), class: :action %> |
     <%= form_for(Note.new(parent: note), html: { class: "inline" }) do |f| %>
       <%= f.text_field :link, placeholder: "Child", class: "inline" %>
       <%= f.hidden_field :parent_id, value: note.id %>
     <% end %> |
   <% end %>
 
-  <%= link_to 'Delete', note, method: :delete, data: { confirm: 'Are you sure?' }, class: :action %> |
+  <%= link_to "Delete", note, method: :delete, data: { confirm: "Are you sure?" }, class: :action %> |
 
   <span class="age">
     <%= compact_age(note.created_at) %>
@@ -31,8 +31,11 @@
 
   <% unless note.children.empty? %>
     <div class="children">
-      <% note.children.each do |note| %>
-        <%= render 'show', note: note, root: false %>
+      <% note.children.reverse.take(3).each do |note| %>
+        <%= render "show", note: note, root: false %>
+      <% end %>
+      <% if note.children.size > 3 %>
+        <%= link_to "View All", edit_note_path(note), class: :action %>
       <% end %>
     </div>
   <% end %>
