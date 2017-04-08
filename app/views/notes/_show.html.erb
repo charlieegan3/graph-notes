@@ -23,11 +23,13 @@
     <%= compact_age(note.created_at) %>
   </span>
 
-  <span class="tags">
-    <% note.tags.take(8).each_with_index do |t, i| %>
-      <span class="tag" style="background-color: #<%= color_for_string(t.to_s) %>"><%= t %></span>
-    <% end%>
-  </span>
+  <% if params["action"] == "search" %>
+    <span class="tags">
+      <% note.tags.take(8).each_with_index do |t, i| %>
+        <span class="tag" style="background-color: #<%= color_for_string(t.to_s) %>"><%= t %></span>
+      <% end%>
+    </span>
+  <% end %>
 
   <% unless note.children.empty? %>
     <div class="children">
