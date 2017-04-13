@@ -18,7 +18,7 @@ class NotesController < ApplicationController
 
   # GET /notes/1
   def show
-    redirect_to notes_path + "#note-#{@note.id}"
+    redirect_to edit_note_path
   end
 
   # GET /notes/new

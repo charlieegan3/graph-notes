@@ -1,4 +1,13 @@
-<h1>Editing Note</h1>
+<h1>Note</h1>
+
+<p>
+  <% if @note.parent %>
+    Parent:
+    <%= link_to @note.parent.title, note_path(@note.parent) %>
+  <% else %>
+    <%= link_to "Index", root_path %>
+  <% end %>
+</p>
 
 <%= render 'form', note: @note %>
 
