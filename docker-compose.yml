@@ -1,5 +1,6 @@
 app:
   build: .
+  dockerfile: Dockerfile.dev
   volumes:
     - .:/app:Z
   ports:
