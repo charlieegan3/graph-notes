@@ -18,7 +18,7 @@ db:
   ports:
     - "5432:5432"
   volumes:
-    - graph_notes_data:/var/lib/postgresql/data:Z
+    - link_organiser_data:/var/lib/postgresql/data:Z
   environment:
     POSTGRES_USER: app
     POSTGRES_PASSWORD: password

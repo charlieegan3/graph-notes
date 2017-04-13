@@ -1,3 +1,3 @@
-# Graph Notes: Link Organiser
+# Link Organiser
 
-Simple Rails app to store links and notes about them.
+Simple Rails application to store links in a tree like structure.
