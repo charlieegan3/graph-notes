@@ -5,8 +5,8 @@
   <%= text_field_tag :query %>
 <% end %>
 
-<div class="root-container">
+<ul class="root-container">
   <% @notes.each do |note| %>
-    <%= render "show", note: note, root: true %>
+    <li><%= render "show", note: note, root: true %></li>
   <% end %>
-</div>
+</ul>

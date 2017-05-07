@@ -1,10 +1,8 @@
-<div class="note<%= root ? " root" : "" %>" id="note-<%= note.id %>">
+<div id="note-<%= note.id %>">
   <% if note.has_link? %>
       <%= link_to(note.short_title(10), note.link) %>
   <% else %>
-    <strong class="title">
-      <%= note.title %>
-    </strong>
+    <strong><%= note.title %></strong>
   <% end %>
 
   <%= link_to "View", edit_note_path(note), class: :action %> |
@@ -32,13 +30,12 @@
   <% end %>
 
   <% unless note.children.empty? %>
-    <div class="children">
-      <% note.children.reverse.take(3).each do |note| %>
-        <%= render "show", note: note, root: false %>
+    <ul>
+      <% note.children.reverse.each do |note| %>
+        <li>
+          <%= render "show", note: note %>
+        </li>
       <% end %>
-      <% if note.children.size > 3 %>
-        <%= link_to "#{note.children.size - 3} more", edit_note_path(note), class: :action %>
-      <% end %>
-    </div>
+    </ul>
   <% end %>
 </div>

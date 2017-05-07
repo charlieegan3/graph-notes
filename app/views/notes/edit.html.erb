@@ -11,16 +11,17 @@
 
 <%= render 'form', note: @note %>
 
-<br/>
+<br><br>
 
 <%= button_to 'Delete', @note, method: :delete, data: { confirm: 'Are you sure?' } %>
 
-<br/>
+<br><br>
+<%= button_to 'Add Child', new_note_path, method: :get, params: { parent_id: @note.id } %>
 
-<%= link_to 'Add Child', new_note_path(parent_id: @note.id) %>
+<br><br>
 
-<br/><br/>
-
-<% @note.children.each do |note| %>
-  <%= render "show", note: note, root: @note.root? %>
-<% end %>
+<ul>
+  <% @note.children.each do |note| %>
+    <li><%= render "show", note: note, root: @note.root? %></li>
+  <% end %>
+</ul>
