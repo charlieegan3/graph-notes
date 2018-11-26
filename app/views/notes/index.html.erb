@@ -9,6 +9,8 @@
 
 <ul>
   <% @notes.each do |note| %>
-    <li><%= render "show", note: note %></li>
+    <li>
+      <%= link_to note.title, note_path(note) %>
+    </li>
   <% end %>
 </ul>

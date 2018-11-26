@@ -10,10 +10,6 @@ default: &default
   host: <%= ENV['POSTGRES_PORT_5432_TCP_ADDR'] %>
   port: <%= ENV['POSTGRES_PORT_5432_TCP_PORT'] %>
 
-production:
-  <<: *default
-  database: app_production
-
 development:
   <<: *default
   database: app_development
@@ -21,3 +17,6 @@ development:
 test:
   <<: *default
   database: app_test
+
+production:
+  url: <%= ENV.fetch("DATABASE_URL", "") %>
