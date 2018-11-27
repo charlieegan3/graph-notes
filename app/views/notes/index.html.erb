@@ -11,6 +11,12 @@
   <% @notes.each do |note| %>
     <li>
       <%= link_to note.title, note_path(note) %>
+      <% unless note.has_link? %>
+        <%= form_for(Note.new(parent: note), html: { class: "inline" }) do |f| %>
+          <%= f.text_field :link, placeholder: "Child", class: "inline" %>
+          <%= f.hidden_field :parent_id, value: note.id %>
+        <% end %>
+      <% end %>
     </li>
   <% end %>
 </ul>
